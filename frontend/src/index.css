@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* small custom tweaks to match the screenshot feel */
+body { @apply bg-gray-50 }
+
+.border-dashed { border-style: dashed; }
+
+/* Print styles: hide UI controls and print only the planner */
+@media print {
+	/* hide everything by default */
+	body * { visibility: hidden; }
+
+	/* show planner root */
+	#planner-root, #planner-root * { visibility: visible; }
+	#planner-root { position: absolute; left: 0; top: 0; width: 100%; }
+
+	/* hide elements marked as no-print */
+	.no-print { display: none !important; }
+
+	/* ensure colors print (some browsers may require -webkit-print-color-adjust) */
+	* { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+	/* remove backgrounds on body for clean page */
+	body { background: white !important; }
+}

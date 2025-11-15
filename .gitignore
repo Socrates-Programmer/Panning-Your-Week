@@ -1,0 +1,25 @@
+## Top-level ignores for this workspace
+
+# Node projects inside workspace
+**/node_modules/
+**/package-lock.json
+**/yarn.lock
+**/pnpm-lock.yaml
+
+# Build outputs
+**/dist/
+**/build/
+
+# Env files
+.env
+.env.*
+
+# OS and editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Misc
+coverage/
+*.log
