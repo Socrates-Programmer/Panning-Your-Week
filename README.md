@@ -92,3 +92,7 @@ Para soporte multi-usuario en la nube: habilita Firebase y adapta `src/store.ts`
 ---
 
 Si quieres que prepare el despliegue en Render ya mismo (configurar `render.yaml` o crear el servicio), dime y lo preparo.
+<<<<<<< HEAD
+=======
+# Panning-Your-Week
+>>>>>>> fead18d (Update README for Render/Deploy)
