@@ -168,11 +168,15 @@ export function cleanNonLockedAssignments(weekKey: string, types: HourType[]) {
   
   const lockedTypeIds = new Set(types.filter(t => t.isLocked).map(t => t.id))
   
-  // Get all locked assignments from current and future weeks only (not past weeks)
+  // Get all locked assignments from weeks up to and including the target week.
+  // Locked assignments should flow forward in time (from past -> future),
+  // but a future week must not retroactively affect an earlier week.
   const allLockedAssignments: Record<string, number> = {}
+  const targetStart = getWeekStartDate(weekKey).getTime()
   for (const [week, assignments] of Object.entries(_store.assignments)) {
-    // Skip past weeks
-    if (isPastWeek(week)) continue
+    const weekStart = getWeekStartDate(week).getTime()
+    // Skip assignments from weeks after the target week (do not apply future -> past)
+    if (weekStart > targetStart) continue
     for (const [key, typeId] of Object.entries(assignments)) {
       if (lockedTypeIds.has(typeId)) {
         allLockedAssignments[key] = typeId
